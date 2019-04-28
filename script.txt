@@ -1,0 +1,19 @@
+var vehiculo= {
+'id': '1',
+'placa': '123',
+'capacidad': '2',
+'idMarca': 'Lamborghini',
+'idEstilo': 'Sedán',
+'modelo': 'Civic',
+'color': 'azul',
+'cilindrada' : '250',
+'combustible': 'Gasolina',
+'Año': '2016',
+'lista_extras': '5',
+'cantidad_pasajeros': '2',
+'precio_renta_dia': '52',
+'estado': 'Rentado'	
+};
+
+db.vehiculos.insertOne(obj);
+
