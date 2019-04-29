@@ -1,5 +1,6 @@
+use LabMondoDB
+
 var vehiculo= {
-'id': '1',
 'placa': '123',
 'capacidad': '2',
 'idMarca': 'Lamborghini',
@@ -8,12 +9,108 @@ var vehiculo= {
 'color': 'azul',
 'cilindrada' : '250',
 'combustible': 'Gasolina',
+'Transmision': 'Automatica',
 'Año': '2016',
 'lista_extras': '5',
 'cantidad_pasajeros': '2',
 'precio_renta_dia': '52',
-'estado': 'Rentado'	
+'estado': 'Rentado'
 };
 
-db.vehiculos.insertOne(obj);
+var vehiculo= [
+{'placa': '123',
+'capacidad': '2',
+'idMarca': 'Lamborghini',
+'idEstilo': 'Sedán',
+'modelo': 'Civic',
+'color': 'azul',
+'cilindrada' : '250',
+'combustible': 'Gasolina',
+'Transmision': 'Automatica',
+'Año': '2016',
+'lista_extras': '5',
+'cantidad_pasajeros': '2',
+'precio_renta_dia': '52',
+'estado': 'Rentado'},
+{'placa': '456',
+'capacidad': '2',
+'idMarca': 'Lamborghini',
+'idEstilo': 'Pickup',
+'modelo': 'Qasquai',
+'color': 'rojo',
+'cilindrada' : '250',
+'combustible': 'Gasolina',
+'Transmision': 'Automatica',
+'Año': '2016',
+'lista_extras': '5',
+'cantidad_pasajeros': '2',
+'precio_renta_dia': '70',
+'estado': 'Disponible'},
+{'placa': '666',
+'capacidad': '2',
+'idMarca': 'Nissan',
+'idEstilo': 'Sedán',
+'modelo': 'Civic',
+'color': 'azul',
+'cilindrada' : '250',
+'combustible': 'Gasolina',
+'Transmision': 'Automatica',
+'Año': '2016',
+'lista_extras': '5',
+'cantidad_pasajeros': '2',
+'precio_renta_dia': '10',
+'estado': 'Rentado'},
+{'placa': '555',
+'capacidad': '2',
+'idMarca': 'Hyundai',
+'idEstilo': 'Pickup',
+'modelo': 'Xtrial',
+'color': 'rojo',
+'cilindrada' : '250',
+'combustible': 'Gasolina',
+'Transmision': 'Automatica',
+'Año': '2016',
+'lista_extras': '5',
+'cantidad_pasajeros': '2',
+'precio_renta_dia': '20',
+'estado': 'Disponible'}	
+];
 
+db.vehiculos.insertOne(vehiculo);
+db.vehiculos.insertMany(vehiculo)
+
+
+var persona= {
+'cedula': '1',
+'nombre': 'cristian',
+'correo': 'cristian95mc@gmail.com',
+'telefono': '84348512'	
+};
+
+db.personas.insertOne(persona);
+
+var renta= {
+'cedula': '1',
+'placa': '123',
+'dias': '10',
+'renta': '84348512'	
+};
+
+db.rentas.insertOne(renta);
+
+
+db.vehiculos.updateOne(
+    { "placa" : "123" }, 
+    {
+      $set: {  "capacidad" : "3",  "cilindrada" : "300" },
+      $currentDate: { "lastModified": true }
+    }
+)
+
+db.vehiculos.deleteOne(
+    { "placa": "123" } 
+)
+
+db.vehiculos.findOne({"placa":"123"})
+
+db.vehiculos.find({$and: [{"precio_renta_dia":{"$gte": "10"}},{"precio_renta_dia":{"$lte": "70"}}]})
